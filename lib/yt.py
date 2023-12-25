@@ -149,7 +149,6 @@ def send_message(api_service, live_chat_id, message_text):
 # Function to get the latest live broadcast ID for a channel
 def get_latest_live_broadcast_id(api_service, channel_id):
     try:
-        print(channel_id)
         response = api_service.search().list(
             part="id",
             channelId=channel_id,

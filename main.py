@@ -179,14 +179,17 @@ def submit(id, user):
     # Look up the level
     try:
         req = requests.post(url="http://www.boomlings.com/database/getGJLevels21.php", data=data, headers={"User-Agent": ""})
-        if req.text == -1:
+
+        if req.text == "-1":
             yt.send_message(bot_api_service, live_chat_id, f"@{user} Level {id} does not exist. Please try again!")
-            return;
+            return
+        
         [levels, creators, songs, page_info, hash] = req.text.split("#")
         creators_parsed = {x[0]: {"username": x[1], "account_id": x[2]} for x in map(lambda c: c.split(":"), creators.split("|"))}
         levels_parsed = []
     except Exception as e:
         print(f"[Error] submit() (init): {e} \nThis is likely because you're banned from GD servers (very unlikely).")
+        return
 
     # Parses level
     try:
@@ -209,9 +212,10 @@ def submit(id, user):
         # sanity check
         if len(levels_parsed) == 0:
             yt.send_message(bot_api_service, live_chat_id, f"@{user} Level {id} does not exist. Please try again!")
-            return
+            return  
     except Exception as e:
         print(f"[Error] submit() (parsing level): {e}")
+        return
 
     # write to seen levels
     try:
