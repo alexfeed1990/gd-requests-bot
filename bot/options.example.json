@@ -1,0 +1,12 @@
+{
+    "bot_client_secrets_file": "credentials/bot_client_secrets.json",
+    "user_client_secrets_file": "credentials/user_client_secrets.json",
+    "bot_token_file": "credentials/bot_token.json",
+    "user_token_file": "credentials/user_token.json",
+    "seen_file": "bot/seen_levels.txt",
+    "persistent_rerequests": false,
+    "separate_rerequest_webhook": false,
+    "bot_prefix": "!",
+    "webhook_url": "",
+    "rerequest_webhook_url": ""
+}
